@@ -6,24 +6,16 @@
 <div class="tops">
   <div class="top">
     <div class="left">
-      <div class="file-label">
-        <label for="price">
-          表
-        </label>
-        <label for="price">
-          裏
-        </label>
-      </div>
       <div class="file-two">
-        @for ($i = 0; $i < 2; $i++)
-          <input type="file" name="img[{{$i}}]" id="myfile{{$i}}">
+        <!-- @for ($i = 0; $i < 2; $i++) -->
+          <!-- <input type="file" name="img[{{$i}}]" id="myfile{{$i}}"> -->
           <!-- <input type="file" name="img[]" id="myfile2"> -->
-          <input type="hidden" name="nums[{{$i}}]">
-        @endfor
+          <!-- <input type="hidden" name="nums[{{$i}}]"> -->
+        <!-- @endfor -->
+        <input type="file" name="img" id="myfile">
       </div>
       <div class="preview">
         <img id="img0" style="width:290px;height:290px;" />
-        <img id="img1" style="width:290px;height:290px;" />
       </div>
     </div>
     <div class="rights">

@@ -19,7 +19,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
+Route::get('/Item/search', 'ItemController@search')->name('item.search');
 Route::group(['middleware' => ['auth.admin']], function () {
 
     //管理側トップ
