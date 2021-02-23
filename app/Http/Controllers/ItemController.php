@@ -26,7 +26,7 @@ class ItemController extends Controller
         // header('Content-Type: text/html; charset=UTF-8');
         $value = new Item;
 
-        $i = 0;
+        // $i = 0;
 
         $value->item_name = $request->input('item_name');
 
@@ -42,19 +42,27 @@ class ItemController extends Controller
 
         $value->save();
 
-        foreach ($request->nums as $val) {
-            if ($request->img !== null) {
+        // foreach ($request->nums as $val) {
+        //     if ($request->img !== null) {
                 $img = new Image;
 
-                $img->image = $request->img[$i]->store('images', 'public');
+                $img->image = $request->img->store('images', 'public');
 
                 $img->item_id = $value->id;
 
                 $img->save();
-            }
-            $i++;
-        }
+        //     }
+        //     $i++;
+        // }
 
         return redirect('admin/');
+    }
+
+    public function search(Request $request){
+        $keyword = $request->input('keyword');
+        $query = Item::all();
+        $query->where('item_name','like','%'.$keyword.'%');
+        $items = $query->get();
+        echo var_dump($items);
     }
 }

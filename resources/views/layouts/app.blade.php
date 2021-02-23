@@ -53,6 +53,11 @@
                                 </li>
                             @endif
                         @else
+                        <form class="search-container" method="GET" action="{{route('item.search')}}" enctype="multipart/form-data">
+                            <input id="search-box" type="text" class="search-box" name="search" value="{{request('search')}}" />
+                            <label for="search-box"><span class="fa fa-search search-icon"></span></label>
+                            <input type="submit" id="search-submit" />
+                        </form>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
