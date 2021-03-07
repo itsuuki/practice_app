@@ -13,7 +13,14 @@ class ItemController extends Controller
     public function index()
     {
         $items = Item::all();
-        return view('item/index', ['items' => $items]);
+        $data = "https://www.googleapis.com/books/v1/volumes?q=東野圭吾";
+        $json = file_get_contents($data);
+        $json_decode = json_decode($json);
+
+        // jsonデータ内の『entry』部分を複数取得して、postsに格納
+        $posts = $json_decode->items;
+        // var_dump($posts);
+        return view('item/index', ['items' => $items, 'posts' => $posts]);
     }
 
     public function create()
@@ -60,9 +67,18 @@ class ItemController extends Controller
 
     public function search(Request $request){
         $keyword = $request->input('keyword');
-        $query = Item::all();
-        $query->where('item_name','like','%'.$keyword.'%');
-        $items = $query->get();
-        echo var_dump($items);
+        // $query = Item::all();
+        $data = 'https://www.googleapis.com/books/v1/volumes?q='.'"$keyword"';
+        // $query->where('item_name','like','%'.$keyword.'%');
+        $json = file_get_contents($data);
+        $json_decode = json_decode($json, true);
+        
+        $posts = $json_decode['items'];
+        // dd($json_decode['items']);
+        return view('item/index', ['posts' => $posts]);
+        // var_export($posts);
+        // $items = $query->get();
+        // {{ optional($post)['title'] }}
+        // [0]['volumeInfo']
     }
 }
