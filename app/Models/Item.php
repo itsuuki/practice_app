@@ -30,4 +30,8 @@ class Item extends Model
     {
         return $this->belongsTo('App\Reservation');
     }
+    // public function toArray($requset)
+    // {
+    //     return ['title' => $this->title];
+    // }
 }
